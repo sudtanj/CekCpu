@@ -1,0 +1,522 @@
+Format instruksi (32 bytes)
+Halt/end program (HALT)
+Kode: 00010100 (0x7F)
+Op.code
+
+
+8 bits
+24 bits
+Bit: 31-24
+0-23
+Flag 
+XF, 0 (jika sudah halt/terminate), dan 1 (jika eksekusi masih berlangsung)
+
+Arithmetic register ke register (ADD), contoh program perlu direvisi
+Kode: 00000000 (0x00), rd = rs1 + rs2
+Op.code
+Reg destination
+Reg. source-1
+Reg. source-2
+
+
+8 bits
+4 bits
+4 bits
+4 bits
+12 bits
+Bit: 31-24
+20-23
+16-19
+15-12
+0-12
+Flag
+SF, ZF, CF, OF
+
+Arithmetic immediate (ADDI), contoh program perlu direvisi
+Kode: 00000001 (0x01), rd = rs1 + immediate
+Op.code
+Reg. destination
+Reg. source-1
+Immediate data
+8 bits
+4 bits
+4 bits
+16 bits
+Bit: 31-24
+20-23
+16-19
+0-15
+Flag
+SF, ZF, CF, OF
+
+Transfer register ke register (MOVR), 32 bits (word), contoh program perlu direvisi
+Kode: 00000002 (0x02), rd = rs1
+Op.code
+Reg. destination
+Reg. source-1
+
+
+8 bits
+4 bits
+4 bits
+16 bits diabaikan
+Bit: 31-24
+20-23
+16-19
+0-15
+Flag
+SF, ZF, CF, OF
+
+Transfer immediate data (constant ?16 bit) ke register (MOVI), contoh program perlu direvisi
+Kode opcode: 00000011 (0x03), rd = imm
+Op.code
+Reg. destination
+Immediate/address
+8 bits
+4 bits
+20 bits
+Bit: 31-24
+20-23
+0-19
+Flag
+SF, ZF, CF, OF
+
+Transfer register ke memory (MOV), contoh program perlu direvisi
+Kode: 00000100 (0x04), M[rd+offset address] = s1
+Op.code
+Reg. destination (alamat memori)
+Reg. Source-1 (sumber)
+Immediate/offset address 
+8 bits
+4 bits
+4 bits
+16 bits
+Bit: 31-24
+20-23
+16-19
+0-15
+Flag
+
+
+
+Transfer word dari memori ke register (MOVM) 
+Kode: 00000101 (0x05), rd = M[s1 + immediate]
+Op.code
+Reg. destination
+Reg. Source-1
+Immediate/address
+8 bits
+4 bits
+4 bits
+16 bits
+Bit: 31-24
+20-23
+16-19
+0-15
+Flag
+Belum selesai
+
+Format berikut di bawah ini perlu di tata ulang
+Transfer byte 8 bits register ke memori (MOVB)
+Kode: 00000110 (0x06), M[rd+immediate] = s1
+Op.code
+Reg. destination (alamat memori)
+Reg. source-1
+Immediate/address
+8 bits
+4 bits
+4 bits
+16 bits
+Bit: 31-24
+20-23
+16-19[16-17]
+0-15
+Flag
+Belum selesai
+
+Transfer byte 8 bits dari memori ke register (MOVMB)
+Kode: 00000111 (0x07), rd = M[s1+immediate]
+Op.code
+Reg. destination
+Reg. source-1
+Immediate/address
+8 bits
+4 bits
+4 bits
+16 bits
+Bit: 31-24
+20-23
+16-19
+0-15
+Flag
+Belum selesai
+
+Transfer half word high 16 bits register ke memori (MOVH), 2 byte lokasi
+Kode: 00001000 (0x08), M[rd+immediate] = s1:[16-31]
+Op.code
+Reg. destination
+Reg. source-1
+Immediate/address
+8 bits
+4 bits
+4 bits
+16 bits
+Bit: 31-24
+20-23
+16-19
+0-15
+Flag
+Belum selesai
+
+Transfer half word high 16 bits dari memori ke register (MOVMH)
+Kode: 00001001 (0x09)
+Op.code
+Reg. source-1
+Reg. destinasi
+Immediate/address
+8 bits
+4 bits
+4 bits
+16 bits
+Bit: 31-24
+20-23
+16-19
+0-15
+Flag
+Belum selesai
+
+Transfer half word low 16 bits register ke memori (MOVL) [0-15]
+Kode: 00001010 (0x0A), M[rd+immediate] = s1:[0-16]
+Op.code
+Reg. destination 
+Reg. source-1
+Immediate/address
+8 bits
+4 bits
+4 bits
+16 bits
+Bit: 31-24
+20-23
+16-19
+0-15
+Flag
+Belum selesai
+
+Transfer half word low 16 bits dari memori ke register (MOVML), M:[0-15]
+Kode: 00001011 (0x0B), rd = M[s1+immediate]:[0-16]
+Op.code
+Reg. destinasi
+Reg. source-1
+Immediate address
+8 bits
+4 bits
+4 bits
+16 bits
+Bit: 31-24
+20-23
+16-19
+0-15
+Flag
+Belum selesai
+
+Transfer double word 64 bits register ke memori (MOVD)
+Kode: 00001100 (0x0C)
+Op.code
+Reg. source-1
+Reg. destinasi
+Immediate/address
+8 bits
+4 bits
+4 bits
+16 bits
+Bit: 31-24
+20-23
+16-19
+0-15
+Flag
+Belum selesai
+
+Transfer double word 64 bits dari memori ke register (MOVMD)
+Kode: 00001101 (0x0D)
+Op.code
+Reg. source-1
+Reg. destinasi
+Immediate/address
+8 bits
+4 bits
+4 bits
+16 bits
+Bit: 31-24
+20-23
+16-19
+0-15
+Flag
+Belum selesai
+
+Push/simpan register ke stack (PUSH)
+Kode: 00001110 (0x0E)
+Op.code
+Reg. source-1
+Reg. destinasi
+Immediate/address
+8 bits
+4 bits
+4 bits
+16 bits
+Bit: 31-24
+20-23
+16-19
+0-15
+Flag
+Belum selesai
+
+Pop/keluarkan data dari stack, simpan ke register (POP)
+Kode: 00001111 (0x0F)
+Op.code
+Reg. source-1
+Reg. destinasi
+Immediate/address
+8 bits
+4 bits
+4 bits
+16 bits
+Bit: 31-24
+20-23
+16-19
+0-15
+Flag
+Belum selesai
+
+simpan flag register (FLAG) ke stack (PUSHF)
+Kode: 00010000 (0x10)
+Op.code
+Reg. source-1
+Reg. destinasi
+Immediate/address
+8 bits
+4 bits
+4 bits
+16 bits
+Bit: 31-24
+20-23
+16-19
+0-15
+Flag
+Belum selesai
+
+Keluarkan data dari stack simpan ke flag register (POPF)
+Kode: 00010001 (0x11)
+Op.code
+Reg. source-1
+Reg. destinasi
+Immediate/address
+8 bits
+4 bits
+4 bits
+16 bits
+Bit: 31-24
+20-23
+16-19
+0-15
+Flag
+Belum selesai
+
+Invoke Interrupt (INTR)
+Kode: 00010010 (0x12)
+Op.code
+Reg. source-1
+Reg. destinasi
+Immediate/address
+8 bits
+4 bits
+4 bits
+16 bits
+Bit: 31-24
+20-23
+16-19
+0-15
+Flag
+Belum selesai
+
+Read input device (IN), perlu dikerjakan
+Kode: 00010011 (0x13), IN rd, s1; operasi Input-output (simulasi berupa delay())
+Op.code
+Reg. destination
+Reg. source-1
+Tidak digunakan
+8 bits
+4 bits
+4 bits
+16 bits
+Bit: 31-24
+20-23
+16-19
+0-15
+Flag
+Belum selesai
+
+Write output device (OUT) , perlu dikerjakan
+Kode: 00010100 (0x14), OUT rd, s1; operasi Input-output (simulasi berupa delay())
+Op.code
+Reg. destination
+Reg. source-1
+Tidak digunakan
+8 bits
+4 bits
+4 bits
+16 bits
+Bit: 31-24
+20-23
+16-19
+0-15
+Flag
+Belum selesai
+
+Unconditional Jump (JMP), untuk jump near
+Kode: 00010101 (0x15), jmp addr; ke lokasi memori
+Op.code
+Immediate/address
+8 bits
+24 bits (3 bytes)
+Bit: 31-24
+0-23
+Flag
+Belum ditetapkan
+
+Unconditional Jump register (JMPR), untuk jump far
+Kode: 00010110 (0x16), jmpr rd
+Op.code
+Reg. source-1
+Tidak digunakan
+8 bits
+4 bits
+20 bits
+Bit: 31-24
+20-23
+0-19
+Flag
+Belum ditetapkan
+
+Conditional jump on equal (JE)
+Kode: 00010111 (0x17), JE s1,s2,jump to immediate
+Op.code
+Reg. source-1
+Reg. source-2
+Immediate/address
+8 bits
+4 bits
+4 bits
+16 bits
+Bit: 31-24
+20-23
+16-19
+0-15
+Flag
+Belum selesai
+
+Conditional jump on not equal (JNE)
+Kode: 00011000 (0x18), JNE s1,s2,jump to immediate
+Op.code
+Reg. source-1
+Reg. source-2
+Immediate/address
+8 bits
+4 bits
+4 bits
+16 bits
+Bit: 31-24
+20-23
+16-19
+0-15
+Flag
+Belum selesai
+
+Conditional jump on less than (JLT)
+Kode: 00010111 (0x19), JLT s1,s2,jump to immediate, s1 < s2
+Op.code
+Reg. source-1
+Reg. source-2
+Immediate/address
+8 bits
+4 bits
+4 bits
+16 bits
+Bit: 31-24
+20-23
+16-19
+0-15
+Flag
+Belum selesai
+
+Conditional jump on greater than (JGT)
+Kode: 00011000 (0x1A), JGT s1,s2,jump to immediate, s1 > s2
+Op.code
+Reg. source-1
+Reg. source-2
+Immediate/address
+8 bits
+4 bits
+4 bits
+16 bits
+Bit: 31-24
+20-23
+16-19
+0-15
+Flag
+Belum selesai
+
+
+Arithmetic Subtract (SUB)
+Kode: 00011011 (0x1B), rd = rs1 - rs2
+Op.code
+Reg destination
+Reg. source-1
+Reg. source-2
+
+
+8 bits
+4 bits
+4 bits
+4 bits
+12 bits
+Bit: 31-24
+20-23
+16-19
+15-12
+0-12
+Flag
+SF, ZF, CF, OF
+
+Arithmetic subtract immediate (SUBI)
+Kode: 00011100 (0x1C), rd = rs1 - immediate
+Op.code
+Reg. destination
+Reg. source-1
+Immediate data
+8 bits
+4 bits
+4 bits
+16 bits
+Bit: 31-24
+20-23
+16-19
+0-15
+Flag
+SF, ZF, CF, OF
+
+Transfer numeric data 16 bits dari memori ke register (MOVMHW) 
+Kode: 00011101 (0x1D), rd = M[s1 + immediate], data 16 bits
+Op.code
+Reg. destination
+Reg. Source-1
+Immediate/address
+8 bits
+4 bits
+4 bits
+16 bits
+Bit: 31-24
+20-23
+16-19
+0-15
+Flag
+Belum selesai
